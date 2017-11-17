@@ -1,0 +1,246 @@
+.wrapper{
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    position: relative;
+    overflow: hidden;
+}
+.wrapper .bg{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+.slogan{
+    position: absolute;
+    width: 300px;
+    height: 200px;
+    color: #fff;
+    left: 0;
+    bottom: 0;
+    margin: auto 3rem;
+    line-height: 40px;
+    font-size: 1.7rem;
+    top: 0;
+}
+.main{
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 360px;
+    height: 480px;
+    margin: auto 10rem;
+    transition: transform 1s;
+    transform-style: preserve-3d;
+}
+.main a{
+    color: #666;
+    padding: 0 4px;
+    text-decoration: none;
+}
+.main a:hover{
+    text-decoration: underline;
+}
+.loginFrom,.registerFrom,.forgetFrom{
+    position: absolute;
+    width: 360px;
+    height: 480px;
+    background-color:#ffffff;
+    text-align: center;
+    color: #666;
+    display: block;
+    overflow: hidden;
+    border-radius: 5px;
+}
+.loginFrom{
+    transform: translateZ(116px);
+}
+.registerFrom{
+    transform-origin: left;
+    transform: rotateY(-120deg)translateX(-260px)translateZ(-59px);
+}
+.forgetFrom{
+    transform-origin: right;
+    transform: rotateY(120deg)translateX(260px)translateZ(-59px);
+}
+.ornament{
+    height: 0;
+    color: #fafafa;
+    position: absolute;
+    top: -4px;
+    width: 0;
+    border: 28px solid transparent;
+    border-top: 30px solid #4ed6cf;
+    transition: top .3s;
+    right: 0;
+}
+.ornament:hover{
+    top: -0px;
+}
+.loginFrom input,.registerFrom input,.forgetFrom input{outline: none;border: none;text-indent: 2rem}
+.loginFrom .input,.registerFrom .input,.forgetFrom .input{
+    width: 320px;
+    height: 4rem;
+    margin: 1.6rem auto;
+}
+input:focus{
+    outline: 1px solid #eee;
+}
+.validate{
+    width: 320px;
+    height: 4rem;
+    background-color: #fff;
+    margin:1.6rem auto;
+}
+.validate input{
+    width: 70%;
+    height: 4rem;
+    float: left;
+}
+.validate img{
+    width: 30%;
+    float: right;
+    height: 4rem;
+}
+.loginFrom h1,.registerFrom h1{font-weight: 100;margin: 0;padding-top: 2rem}
+.forgetFrom h1{
+    font-weight: 100;
+    margin: 0;
+    padding-top: 4rem;
+    padding-bottom: 2rem;
+}
+.loginFrom input[type="checkbox"]{
+    outline: 1px solid #f5f5f5;
+    margin:0 1rem;
+    border-radius: 100%;
+    width: 1rem;height: 1rem;
+    cursor: pointer;
+    border: 1px solid #666;
+    position: relative;
+}
+.registerTips{
+    position: absolute;
+    width: 360px;
+    height: 480px;
+    background-color: #ffffff;
+    text-align: center;
+    color: #666;
+    display: block;
+    overflow: hidden;
+    border-radius: 5px;
+    top: 0;
+    left: 360px;
+    transition: left .3s;
+    z-index: 99;
+}
+.registerTips div{
+    margin: 140px 0;
+    font-size: 1.6rem;
+}
+.registerTips a{
+    cursor: pointer;
+}
+.activation{
+    position: absolute;
+    width: 360px;
+    height: 480px;
+    background-color: #ffffff;
+    text-align: center;
+    color: #666;
+    display: block;
+    overflow: hidden;
+    border-radius: 5px;
+    top: 0;
+    left: 360px;
+    transition: left .3s;
+    z-index: 99;
+}
+.activation a{cursor: pointer}
+#CAPEMAIL{
+    width: 320px;
+    height: 4rem;
+    margin: 1.6rem auto;
+    border: 1px solid #eee;
+}
+#CAPEMAIL:focus{
+    outline: none;
+}
+#CAPEMAIL-tips{
+    text-align: left;
+    width: 320px;
+    margin: 5rem auto 0 auto;
+}
+#CAPEMAIL-warn{display: none}
+.no-use{
+    background-color: #ccc!important;
+    cursor: no-drop!important;
+}
+.no-use:hover{
+    width: 9rem!important;
+}
+.loginFrom input[type="checkbox"]:checked:after{
+    content: '';
+    width: 8px;height: 8px;
+    position: absolute;
+    top: 0;left: 0;right: 0;bottom: 0;
+    margin: auto;
+    border-radius: 100%;
+    background-color: #666;
+}
+.loginFrom button{
+    width: 9rem;
+    height: 3rem;
+    background-color: #77c4ff;
+    color: #fafafa;
+    display: block;
+    margin: 4rem auto 0 auto;
+    border: none;
+    cursor: pointer;
+
+    transition: width .3s;
+}
+.registerFrom button{
+    width: 9rem;
+    height: 3rem;
+    background-color: #77c4ff;
+    color: #fafafa;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    transition: width .3s;
+}
+.forgetFrom button{
+    width: 9rem;
+    height: 3rem;
+    background-color: #77c4ff;
+    color: #fafafa;
+    display: block;
+    margin: 0 auto;
+    border: none;
+    cursor: pointer;
+    transition: width .3s;
+}
+.loginFrom button:hover,.registerFrom button:hover,.forgetFrom button:hover{
+    width: 10rem;
+}
+.success{
+    outline: 1px solid #16cf39!important;
+}
+.fail{
+    outline: 1px solid #cf1d00!important;;
+}
+.activate_view{
+    margin: 20rem auto 2rem auto;
+    width: 500px;
+    height: 200px;
+    color: #fff;
+    background-color: #77c4ff;
+    text-align: center;
+    line-height: 200px;
+    font-size: 3rem;
+    border-radius: 5px;
+}
+.activate_foot{
+    text-align: center;
+}

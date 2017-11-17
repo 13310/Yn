@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    #打开Rerite功能
+    RewriteEngine On
+    #如何文件真实存在,直接访问
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+
+    #如果访问文件不是真实存在,分发请求至 index.php
+    RewriteRule . index.php
+</IfModule>

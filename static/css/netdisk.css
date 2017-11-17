@@ -1,0 +1,764 @@
+
+/*黄昏中的沉浸*/
+body{font-size:1.4rem;background-color: #F2F2F2;color: #666;user-select: none;cursor: default;}
+.header{
+    width: 100%;
+    height: 140px;
+    background-color: #fff;
+    box-shadow: 5px 0 5px 5px #bbb;
+    display: inline-block;
+    z-index: 500;
+    position: relative;
+}
+@font-face {
+    font-family: 'iconfont';
+    src: url('../font/iconfont.eot');
+    src: url('../font/iconfont.eot?#iefix') format('embedded-opentype'),
+    url('../font/iconfont.woff') format('woff'),
+    url('../font/iconfont.ttf') format('truetype'),
+    url('../font/iconfont.svg#iconfont') format('svg');
+}
+.iconfont{
+    font-family:"iconfont" !important;
+    color: #666;
+    font-size:16px;font-style:normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0.2px;
+    -moz-osx-font-smoothing: grayscale;
+}
+.header h1{font-weight: normal;padding: 20px;}
+.new{background-color: #4285F4;padding:8px 30px;margin:20px;color: #f5f5f5;line-height: 40px;cursor: pointer;border-radius: 2px}
+.new:hover{
+    box-shadow: 0 0 5px 0 #bbb;
+}
+.newPiece{
+    width: 340px;
+    background-color: #fff;
+    margin:0 20px;
+    border-radius: 2px;
+    box-shadow: 0 0 15px 0 #bbb;
+    overflow: hidden;
+    animation: newPiece 0.3s forwards;
+    z-index: 999;
+    position: absolute;
+    display: none;
+}
+@keyframes newPiece {
+    0%{height: 0;}
+    100%{height: 300px;}
+}
+.newPiece ul{list-style-type: none;}
+.newPiece i{
+    padding: 0 5px;
+    font-size: 1.5rem;
+}
+.newPiece li{position: relative;padding: 15px 20px}
+.newPiece li:hover{background-color: #eee;cursor: pointer}
+.newPiece li:after{
+    position: absolute;
+    content: "";
+    width: 340px;
+    height: 1px;
+    bottom: 0;
+    left: 0;
+    background-color: #eee;
+}
+.pathPiece{
+    position: absolute;
+    /*width: 300px;*/
+    height: 30px;
+    /*background-color: rebeccapurple;*/
+    left: 300px;
+    bottom: 20px;
+}
+.pathPiece h2{font-weight: 500;float: left;padding: 5px;}
+#path{
+    list-style-type: none;
+    float: left;
+}
+#path li{
+    float: left;
+    font-size: 1.4rem;
+    font-weight: 500;
+    line-height: 28px;
+    cursor: pointer;
+    padding: 5px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow:hidden;
+    max-width: 120px;
+}
+#path li:hover,.pathPiece h2:hover{
+    background-color: rgba(228,228,228,0.5);
+}
+.pathPiece h2:after,#path li:after{
+    content: ">";
+    padding:10px;
+    width: 10px;
+    font-weight: 900;
+    font-size: 1.5rem;
+}
+#path li:last-of-type:after{
+    display: none;
+}
+#path li:last-of-type:hover{
+    background-color: transparent;
+    cursor: default;
+}
+.paste{
+    position: absolute;
+    right: 280px;
+    bottom: 8px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    background-color: #4285F4;
+    display: none;
+}
+.paste:hover{
+    box-shadow: 0 2px 4px 0 #666;
+}
+.paste i{font-size: 1.8rem;color: #666;color: #fff;}
+.info{
+    position: absolute;
+    right: 120px;
+    bottom: 8px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 50px;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    color: #666;
+    font-size: 1.8rem;
+    font-family: "微软雅黑";
+    display: none;
+}
+.info:hover{
+    background-color: rgba(187,187,187,0.3);
+}
+.info:after{
+    position: absolute;
+    content: attr(data-bubble);
+    height: 28px;
+    color: #666;
+    font-size: 1rem;
+    background-color:rgba(228,228,228,1);
+    border-radius: 5px;
+    line-height: 28px;
+    width: 66px;
+    bottom: -32px;right: 50%;
+    opacity: 0;
+    transform: translate(50%);
+}
+.eve{
+    position: absolute;
+    right: 180px;
+    bottom: 8px;
+    cursor: pointer;
+    text-align: center;
+    line-height: 52px;
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+    color: #666;
+    display: none;
+}
+.eve:after{
+    position: absolute;
+    content: attr(data-bubble);
+    height: 28px;
+    color: #666;
+    background-color:rgba(228,228,228,1);
+    border-radius: 5px;
+    line-height: 28px;
+    width: 66px;
+    bottom: -32px;right: 50%;
+    opacity: 0;
+    transform: translate(50%);
+}
+.eve .iconfont{
+    color: #666;
+    font-size: 1.8rem;
+}
+.eve:hover{
+    background-color: rgba(187,187,187,0.3);
+}
+.eve:hover:after,.info:hover:after{
+    transition: opacity 0.6s;
+    transition-delay: 1s;
+    opacity: 1;
+}
+.content{display: inline-block;position: relative}
+.errorContent{font-weight: normal;padding: 200px;}
+.sidebar{
+    width: 250px;
+    display: inline;
+    float: left;
+    margin-top: 10px;
+}
+.sidebar ul{list-style-type: none}
+.sidebar li{
+    position: relative;
+    padding: 10px 20px;
+}
+.sidebar li:hover{
+    background-color: rgba(228,228,228,0.6);
+    cursor: pointer;
+}
+.sidebar li[select]{background-color: #E4E4E4;}
+.list{
+    margin-left: 300px;
+    margin-top: 30px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    height: 720px;
+    padding: 0;
+    z-index: 1;
+    position: relative;
+}
+.list::-webkit-scrollbar{
+    width: 10px;
+    padding: 2px;margin: 2px;
+    background-color: #F2F2F2;
+}
+.list::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #bbb;
+    -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,0.5);
+}
+#loading{
+    background: url("../img/loading.gif")no-repeat;
+    width: 58px;
+    height: 10px;
+    position: fixed;
+    top: 50%;left: 50%;
+    transform: translate(50%,50%);
+    z-index: 9999;
+}
+#loading:after{
+    position: absolute;
+    content: "Loading...";
+    top: 50%;left: -50%;
+    transform: translate(50%,50%);
+}
+.list h1{font-weight: normal;font-size: 1rem}
+.paper{
+    padding: 10px;
+    border: 1px dashed rgba(255,255,255,0.3);
+    display: none;
+}
+.file{
+    margin-top: 30px;
+    padding: 10px;
+    border: 1px dashed rgba(255,255,255,0.3);
+    display: none;
+}
+.list ul{list-style-type: none}
+.paper li{
+    width: 100px;
+    border-radius: 2px;
+    line-height: 42px;
+    box-shadow: 0 2px 6px 0 #bbb;
+    display: inline-block;
+    text-indent: 6px;
+    padding: 2px;
+    padding-left: 40px;
+    height: 40px;
+    background-color: #fff;
+    margin: 10px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow:hidden;
+    position: relative;
+    opacity: 0.8;
+}
+/*似乎不怎么好,如果不行删除这段还有padding-left: 40px;*/
+.paper li:after{
+    position: absolute;
+    left: -2px;
+    content: "\e60b";
+    font-family:"iconfont" !important;
+    color: #eee;
+    opacity: 0.5;
+    font-size:30px;
+    font-style:normal;
+}
+.file li{
+    display: inline-block;
+    width: 180px;
+    text-align: center;
+    border-radius: 2px;
+    line-height: 150px;
+    box-shadow: 0 2px 6px 0 #bbb;
+    text-indent: 6px;
+    padding: 2px;
+    height: 100px;
+    background-color: #fff;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow:hidden;
+    margin: 10px;
+    position: relative;
+}
+.file li:before{
+    position: absolute;
+    content: attr(data-type)"文件";
+    font-size: 1.4rem;
+    bottom: -3px;right: 50%;
+    transform: translate(50%);
+}
+.file li:after{
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 50px;
+    background-color: #bbb;
+    opacity: 0.1;
+    border-radius: 2px;
+    bottom: 0;right: 50%;
+    transform: translate(50%);
+}
+#nocontent{
+    font-size: 1.8rem;
+    color: rgba(102,102,102,0.1);
+    display: none;
+    width: 200px;
+    height: 10px;
+    position: fixed;
+    top: 50%;left: 40%;
+    transform: translate(50%,50%);
+}
+/*属性编辑*/
+
+#shortPlace{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+.formPlace{
+    width: 380px;
+    height: 240px;
+    position: absolute;
+    border-radius: 2px;
+    bottom: 0;left: 0;right: 0;top: 0;
+    margin: auto;
+    background-color: #fff;
+    box-shadow: 0 0 15px 0 #666;
+}
+.formPlace h2{font-weight: 500;padding: 20px;}
+.shortClose{
+    position: absolute;
+    right: 20px;
+    top: 35px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+}
+.shortClose:before{
+    position: absolute;
+    content: "";
+    width: 22px;
+    height: 2px;
+    transform: rotate(45deg);
+    background-color: #999;
+}
+.shortClose:after{
+    position: absolute;
+    content: "";
+    width: 22px;
+    height: 2px;
+    transform: rotate(-45deg);
+    background-color: #999;
+}
+.shortClose:hover:after,#shortClose:hover:before{
+    background-color: #666;
+}
+.shortFM{
+    margin: 10px 20px;
+}
+.shortFM input{
+    width: 330px;
+    height: 26px;
+    border: 1px solid #bbb;
+    outline: none;
+    text-indent: 10px;
+    color: #666;
+}
+.shortFM input:focus{
+    border: 1px solid #4285F4;
+    box-shadow: inset 0 0 4px 0 #4285F4;
+}
+.confirm{
+    float: right;
+    width: 60px;
+    height: 34px;
+    text-align: center;
+    border-radius: 2px;
+    line-height: 34px;
+    margin:30px 30px 30px 0;
+    display: inline-block;
+}
+.confirm:hover{
+    box-shadow: 0 2px 4px 0 #bbb;
+    cursor: pointer;
+}
+#shortEnter{
+    background-color: #4285F4;
+    color: #fff;
+}
+
+/*上传文件*/
+.uploadPlace{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: rgba(0,0,0,0.5);
+    display: none;
+}
+.uploadFM{
+    margin: 10px 20px;
+}
+.uploadFM input{
+    width: 330px;
+    height: 76px;
+    border: 1px solid #bbb;
+    outline: none;
+    text-indent: 10px;
+    color: #666;
+    position: relative;
+    z-index: 555;
+    opacity: 0;
+}
+.uploadBanner{
+    position: absolute;
+    top: 78px;left: 21px;
+    width: 330px;
+    height: 76px;
+    background-color: #fff;
+    border: 1px solid #bbb;
+    opacity: 0.4;
+    text-align: center;
+    line-height: 76px;
+    font-size: 1.3rem;
+}
+.filetips{
+    position: absolute;
+    left: 10px;
+    top:80px;
+    font-size: 1rem;
+    width: 280px;
+    text-align: left;
+    height: 20px;
+    line-height: 20px;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    -o-text-overflow:ellipsis;
+    overflow:hidden;
+}
+.uploadFM input:focus{
+    border: 1px solid #4285F4;
+    box-shadow: inset 0 0 4px 0 #4285F4;
+}
+.uploadEnter{
+    background-color: #4285F4;
+    color: #fff;
+}
+/*控制面板*/
+.property{
+    position: fixed;
+    right: 0;
+    height: 100%;
+    top: 140px;
+    width: 300px;
+    background-color: #fff;
+    z-index: 99;
+    box-shadow: 2px 0 10px 5px #bbb;
+    display: none;
+    animation: property 0.3s forwards;
+}
+@keyframes property {
+    0%{transform: translate(310px)}
+    100%{transform: translate(0px)}
+}
+@keyframes propertyClose {
+    0%{transform: translate(0px)}
+    100%{transform: translate(310px)}
+}
+.property h1{
+    font-weight: normal;
+    padding: 20px 40px;
+    margin: 10px;
+}
+#propertyClose{
+    position: absolute;
+    right: 20px;
+    top: 40px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+}
+#propertyClose:before{
+    position: absolute;
+    content: "";
+    width: 26px;
+    height: 2px;
+    transform: rotate(45deg);
+    background-color: #999;
+}
+#propertyClose:after{
+    position: absolute;
+    content: "";
+    width: 26px;
+    height: 2px;
+    transform: rotate(-45deg);
+    background-color: #999;
+}
+#propertyClose:hover:after,#propertyClose:hover:before{
+    background-color: #666;
+}
+.property ul{list-style-type: none}
+.property li{padding: 10px;margin: 10px;}
+#propertys span{
+    width: 100px;
+    display: inline-block;
+}
+.property b{
+    display: block;
+    width: 100%;
+}
+.setting{
+    position: absolute;
+    width: 280px;
+    height: 60px;
+    top: 560px;
+    left: 5px;
+    text-align: center;
+    /*background-color: #000;*/
+}
+#rename,#copy,#move,#download,#delete{
+    position: absolute;
+    width: 66px;
+    height: 66px;
+    border-radius: 100%;
+    line-height: 66px;
+}
+.ste:hover{
+    background-color: rgba(66,133,244,1);
+    cursor: pointer;
+}
+.ste[data-bubble]:hover:before{
+    position: absolute;
+    content: "";
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid transparent;
+    border-bottom: 10px solid rgba(228,228,228,0.5);;
+    top: 62px;right: 50%;
+    transform: translate(50%);
+    border-radius: 5px;
+}
+.ste[data-bubble]:hover:after{
+    position: absolute;
+    content: attr(data-bubble);
+    height: 30px;
+    color: #666;
+    background-color:rgba(228,228,228,0.5);
+    border-radius: 5px;
+    line-height: 30px;
+    width: 66px;
+    top: 78px;right: 50%;
+    transform: translate(50%);
+}
+.ste:hover .iconfont{color: #fff}
+#rename{left: 0}#copy{left: 56px}#move{left: 112px}#download{left: 168px}#delete{left: 224px}
+#downIframe{
+    display: none;
+    opacity: 0;
+}
+.preview{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: rgba(255,255,255,.99);
+    display: none;
+}
+#preview{
+    position: absolute;
+    top: 0;left: 0;bottom: 0;right: 0;
+    margin: auto;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    box-shadow: 0 0 10px 4px #bbb;
+    width: 600px;
+    height: 400px;
+    background-color: #f5f5f5;
+    color: #666;
+}
+.previewOper{
+    text-align: center;
+    position: relative;
+    top: 20px;
+    height: 40px;
+    border-bottom: 1px solid #ffffff;
+}
+.previewOper h2{
+    font-weight: 500;
+    color: #666;
+}
+.previewOper .iconfont{color: #666;font-size: 20px;cursor: pointer;}
+.previewOper .iconfont:hover{color: #999;}
+#previewExit{
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+#previewExit:before{
+    position: absolute;
+    content: "";
+    top: 15px;left: 0;
+    width: 28px;
+    height: 2px;
+    transform: rotate(45deg);
+    background-color: #666;
+}
+#previewExit:after{
+    position: absolute;
+    content: "";
+    top: 15px;left: 0;
+    width: 28px;
+    height: 2px;
+    transform: rotate(-45deg);
+    background-color: #666;
+}
+#previewExit:hover:after,#previewExit:hover:before{
+    background-color: #999;;
+}
+#previewDel{
+    position: absolute;
+    right: 30px;
+    top: 0;
+}
+#previewDown{
+    position: absolute;
+    right: 80px;
+    top: 2px;
+}
+/*编辑*/
+.writePlace{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    background-color: rgba(255,255,255,.99);
+    display: none;
+}
+#write{
+    position: absolute;
+    top: 0;left: 0;bottom: 0;right: 0;
+    margin:200px auto;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+    box-shadow: 0 0 10px 4px #bbb;
+    width: 600px;
+    height: 400px;
+    background-color: #fff;
+    color: #666;
+    resize: none;
+    outline: none;
+    padding: 10px;
+}
+#write::-webkit-scrollbar{
+    width: 8px;
+    padding: 2px;margin: 2px;
+    background-color: #F2F2F2;
+}
+#write::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background: #bbb;
+    -webkit-box-shadow: 0 0 0 0 rgba(0,0,0,0.5);
+}
+.writePlace h2{
+    font-weight: 500;
+    color: #666;
+}
+#writeExit{
+    position: absolute;
+    left: 20px;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+#writeExit:before{
+    position: absolute;
+    content: "";
+    top: 15px;left: 0;
+    width: 28px;
+    height: 2px;
+    transform: rotate(45deg);
+    background-color: #666;
+}
+#writeExit:after{
+    position: absolute;
+    content: "";
+    top: 15px;left: 0;
+    width: 28px;
+    height: 2px;
+    transform: rotate(-45deg);
+    background-color: #666;
+}
+#writeExit:hover:after,#writeExit:hover:before{
+    background-color: #999;;
+}
+#writeEnter{
+    position: absolute;
+    right: 20px;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+#writeEnter:before{
+    position: absolute;
+    content: "";
+    top: 20px;left: -6px;
+    width: 12px;
+    height: 2px;
+    transform: rotate(45deg);
+    background-color: #666;
+}
+#writeEnter:after{
+    position: absolute;
+    content: "";
+    top: 15px;left: 0;
+    width: 26px;
+    height: 2px;
+    transform: rotate(-45deg);
+    background-color: #666;
+}
+#writeEnter:hover:after,#writeEnter:hover:before{
+    background-color: #999;;
+}
