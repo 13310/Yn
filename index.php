@@ -9,6 +9,5 @@ require (APP_PATH.'framework/Framework.php');
 //载入配置文件
 $config = require (APP_PATH.'/config/config.php');
 define('ROOT_PATH',$config['RootPath']);
-
 //实例化框架类
 Framework::run($config);

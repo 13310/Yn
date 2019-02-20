@@ -1,0 +1,41 @@
+# 使用docker-compose up -d 编译并运行服务
+# 使用docker-compose stop 停止服务
+# 使用docker-compose down --rmi local 删除容器并且删除没有image使用build生成的镜像
+version: '3'
+services:
+  web:
+    image: nginx:latest
+    ports:
+      - "6410:80"
+    links:
+      - php
+    volumes:
+      - ./:/var/www
+      - ./site.conf:/etc/nginx/conf.d/default.conf
+    container_name: "yn_nginx"
+    networks:
+      - app-network  
+  php:
+    build: ./docker/php-fpm
+    volumes:
+      - ./:/var/www
+      - ./php.ini:/usr/local/etc/php/php.ini
+    expose:
+      - "9000"  
+    links:
+      - database  
+    container_name: "yn_php"
+    networks:
+      - app-network  
+  database:
+    image: mariadb:latest
+    expose:
+      - "3306"
+    container_name: "yn_database"
+    environment:
+      - MYSQL_ROOT_PASSWORD=crimson
+    networks:
+      - app-network  
+networks:
+  app-network:
+    driver: bridge

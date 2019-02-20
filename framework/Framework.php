@@ -18,7 +18,7 @@
 			$actionName = self::$_config['defaultAction'];
 			$param = array();
 			// 合并后使用配置的地址清除替换
-			$url = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['SERVER_NAME'].$_SERVER['REQUEST_URI'];
+			$url = $_SERVER['REQUEST_SCHEME']."://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 			$url = str_replace(self::$_config['RootPath'],'',$url);
 			// 清除?之后内容,strpos 查找字符串首次出现的位置
 			$position = strpos($url,'?');

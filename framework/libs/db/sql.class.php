@@ -11,7 +11,8 @@
 	  * @param string $char
 	  */
 	public function connect($config=array(),$char='set names "utf8"'){
-		$dbs=$config['db_type'].":host=".$config['db_host'].";dbname=".$config['db_server'];
+		$dbs="mysql:host=".$config['db_host'].";dbname=".$config['db_database'];
+		// die($dbs);
 		try{
 			$this->_pdo = new PDO($dbs,$config['db_user'],$config['db_pass']);
 			$this->_pdo->prepare($char)->execute();
