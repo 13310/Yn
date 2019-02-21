@@ -122,24 +122,27 @@ window.onpopstate = function (evt) {
 };
 // 从url自动读取选择项目
 function autoAttribution() {
-    var urlarr = location.pathname.split("/");
-    var menuBelong = urlarr[3];
-    var containBelong = urlarr[4];
-    if(menuBelong===undefined||menuBelong===""||menuBelong==="index"){
-        yn(".home").className="home selected";
+    var urlArr = location.pathname.split("/");
+    urlArr.shift()
+    var controller = urlArr.shift();
+    var method = urlArr.shift();
+    if(!method){
+        yn(".menu .home").className="home selected";
+    } else {
+        yns(".menu li").forEach(function (t) {
+            if(t.className===method) {
+                t.className=method+" selected"
+            }
+        });
     }
-    yns(".menu li").forEach(function (t) {
-        if(t.className===menuBelong) {
-            t.className=menuBelong+" selected"
-        }
-    });
-    if(yn(".container")){
-        if(containBelong===undefined||containBelong===""){
+    if(method==='account'){
+        var selected = urlArr[0]
+        if(!selected){
             yn(".info").className="info selected";
         }else {
             yns(".container-option>li").forEach(function (t) {
-                if(t.className===containBelong){
-                    t.className=containBelong+" selected";
+                if(t.className===selected){
+                    t.className=selected+" selected";
                 }
             })
         }

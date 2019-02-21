@@ -81,9 +81,9 @@ class fileModel extends Model {
 			));
 			return json_encode($data,true);
 		}
-		// 转码 默认转换成GBK
+		// linux不需要
 		public function changeChar($str,$newChar="gbk",$oldChar="utf-8"){
-			return self::_changeChar($str,$newChar,$oldChar);
+			return $str;
 		}
 		//        文件大小格式化
 		public function byteSize($size){
@@ -389,7 +389,7 @@ class fileModel extends Model {
 			$success_num = 0;
 			foreach ($file['name'] as $key=>$name){
 				$tmp_name = $file['tmp_name'][$key];
-				$file_name = $this->changeChar($name);
+				$file_name = $name;
 				if(move_uploaded_file($tmp_name,$present_path.'/'.$file_name)){
 					$success_num++;
 				}

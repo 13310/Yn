@@ -1,17 +1,7 @@
-/*
-Navicat MariaDB Data Transfer
-
-Source Server         : root
-Source Server Version : 100208
-Source Host           : localhost:3306
-Source Database       : yn
-
-Target Server Type    : MariaDB
-Target Server Version : 100208
-File Encoding         : 65001
-
-Date: 2017-11-14 18:25:00
-*/
+-- cteate yn databse
+CREATE DATABASE IF NOT EXISTS yn default charset utf8mb4 COLLATE utf8mb4_general_ci;
+-- switch database
+use yn;
 
 SET FOREIGN_KEY_CHECKS=0;
 

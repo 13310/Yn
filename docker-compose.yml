@@ -29,7 +29,9 @@ services:
       - app-network
   database:
     image: mariadb:latest
-    port:
+    volumes:
+      - ./config/database.sql:/docker-entrypoint-initdb.d/setup.sql
+    ports:
       - "6311:3306"
     container_name: "yn_database"
     environment:
